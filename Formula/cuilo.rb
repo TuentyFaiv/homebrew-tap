@@ -28,7 +28,8 @@ class Cuilo < Formula
   end
 
   def install
-    bin.install Dir["cuilo-*"].first => "cuilo"
+    # Homebrew names the download after the version folder in its URL, so install the one file it staged.
+    bin.install Dir["*"].first => "cuilo"
     generate_completions_from_executable(bin/"cuilo", "completions")
     (man1/"cuilo.1").write Utils.safe_popen_read(bin/"cuilo", "man")
   end
